@@ -1,12 +1,25 @@
-import React from 'react';
 import Book from './Book';
 
-function Books() {
-  return (
+const books = [
+  {
+    id: 1,
+    title: 'the hunger games',
+    author: 'suzanne spark',
+  },
+  {
+    id: 2,
+    title: 'the expendables',
+    author: 'suzanne spark',
+  },
+];
+
+const Books = () => (
+  <>
     <ul>
-      <Book />
+      {books.map((item) => <Book book={item} key={item.id} />)}
     </ul>
-  );
-}
+  </>
+
+);
 
 export default Books;
