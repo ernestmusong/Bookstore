@@ -1,9 +1,44 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Book() {
+const Book = (props) => {
+  const { book } = props;
   return (
-    <li>book</li>
+    <>
+      <li>
+        <div className="title-sec">
+          <p>action</p>
+          <h3>{book.title}</h3>
+          <p>{book.author}</p>
+          <div>
+            <button type="button">comment</button>
+            <button type="button">remove</button>
+            <button type="button">edit</button>
+          </div>
+          <div className="status-section">
+            <div className="status">
+              <div className="status-bar">
+                <div className="status-bar-inner" />
+              </div>
+              <div className="percentage">
+                <h3>64%</h3>
+                <p>completed</p>
+              </div>
+            </div>
+            <div className="chapter">
+              <h3>current chapter</h3>
+              <h3>chapter 17</h3>
+              <button type="button">update progress</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </>
   );
-}
+};
+
+Book.propTypes = {
+  book: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default Book;
