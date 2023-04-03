@@ -6,13 +6,13 @@ function Form() {
       <form>
         <h3>book title</h3>
         <div className="inputs-wrap">
-          <label htmlFor="title">
+          <label id="title-label" htmlFor="title">
             <input type="text" id="title" required placeholder="Book title" />
           </label>
-          <label htmlFor="author">
-            <input type="text" id="author" required placeholder="author" />
+          <label id="author-label" htmlFor="author">
+            <input type="text" id="author" required placeholder="Author" />
           </label>
-          <button type="submit">Add book</button>
+          <button className="submit-btn" type="submit">Add book</button>
         </div>
       </form>
     </>

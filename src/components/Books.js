@@ -15,7 +15,7 @@ const books = [
 
 const Books = () => (
   <>
-    <ul>
+    <ul className="books">
       {books.map((item) => <Book book={item} key={item.id} />)}
     </ul>
   </>

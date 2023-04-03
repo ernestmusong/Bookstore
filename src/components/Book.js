@@ -5,31 +5,31 @@ const Book = (props) => {
   const { book } = props;
   return (
     <>
-      <li>
+      <li className="book">
         <div className="title-sec">
-          <p>action</p>
-          <h3>{book.title}</h3>
-          <p>{book.author}</p>
+          <p className="action">action</p>
+          <h3 className="title">{book.title}</h3>
+          <p className="author">{book.author}</p>
           <div>
-            <button type="button">comment</button>
-            <button type="button">remove</button>
-            <button type="button">edit</button>
+            <button id="commentsbtn" className="button" type="button">comments</button>
+            <button id="remove-btn" className="button" type="button">remove</button>
+            <button id="edit-btn" className="button" type="button">edit</button>
           </div>
-          <div className="status-section">
-            <div className="status">
-              <div className="status-bar">
-                <div className="status-bar-inner" />
-              </div>
-              <div className="percentage">
-                <h3>64%</h3>
-                <p>completed</p>
-              </div>
+        </div>
+        <div className="second-child">
+          <div className="status">
+            <div className="status-bar">
+              <div className="status-bar-inner" />
             </div>
-            <div className="chapter">
-              <h3>current chapter</h3>
-              <h3>chapter 17</h3>
-              <button type="button">update progress</button>
+            <div className="percentage">
+              <h3>64%</h3>
+              <p>completed</p>
             </div>
+          </div>
+          <div className="chapter">
+            <h3>current chapter</h3>
+            <h4>chapter 17</h4>
+            <button className="update-progress-btn" type="button">update progress</button>
           </div>
         </div>
       </li>
