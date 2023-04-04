@@ -140,6 +140,39 @@ main {
   padding-right: 5px;
 }
 
+/* PROGRESS BAR */
+
+.ui-widgets {
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9rem;
+  margin: 1.5rem;
+  border: 8px solid;
+  box-shadow: inset 0 0 7px grey;
+  border-color: var(--blueColor);
+  border-bottom-color: white;
+}
+
+.ui-widgets .ui-values {
+  top: 40px;
+  position: absolute;
+  left: 10px;
+  right: 0;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* .ui-widgets:nth-child(2) {
+  border-top-color: chartreuse;
+  border-right-color: white;
+  border-left-color: palegreen;
+  border-bottom-color: white;
+} */
+
+/* END PROGRESS BAR */
+
 .second-child {
   display: flex;
   align-items: center;
@@ -250,6 +283,8 @@ form h3 {
 .submit-btn {
   padding-top: 10px;
   padding-bottom: 10px;
+  border: none;
+  outline: none;
   border-radius: 4px;
   width: 10%;
   color: var(--mainWhite);

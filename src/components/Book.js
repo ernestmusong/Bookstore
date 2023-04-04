@@ -18,11 +18,17 @@ const Book = (props) => {
         </div>
         <div className="second-child">
           <div className="status">
-            <div className="status-bar">
+            {/* <div className="status-bar">
               <div className="status-bar-inner" />
+            </div> */}
+            {/* PROGRESS BAR */}
+            <div className="ui-widgets">
+              <div className="ui-values" />
             </div>
+            {/* END PROGRESS BAR */}
+
             <div className="percentage">
-              <h3>64%</h3>
+              <h3>80%</h3>
               <p>completed</p>
             </div>
           </div>
