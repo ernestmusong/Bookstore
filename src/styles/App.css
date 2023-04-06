@@ -147,13 +147,14 @@ main {
   align-items: center;
   gap: 1rem;
 }
+
 .parent {
   width: 50px;
   height: 8px;
   display: flex;
   align-items: center;
   position: relative;
-   background: var(--grey);
+  background: var(--grey);
 }
 
 .child {
@@ -162,7 +163,7 @@ main {
   height: 8px;
   background: var(--blueColor);
 }
- 
+
 /* END PROGRESS BAR */
 
 .second-child {

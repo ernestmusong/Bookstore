@@ -5,6 +5,17 @@ const client = axios.create({
   baseURL: 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi',
 });
 
+export const createAppId = createAsyncThunk(
+  'books/createAppId',
+  async (name, thunkAPI) => {
+    try {
+      const resp = await client.post('/apps/');
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('app not created');
+    }
+  },
+);
 export const getBooks = createAsyncThunk(
   'books/getBooks',
   async (name, thunkAPI) => {
