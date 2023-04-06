@@ -1,34 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from 'redux/books/booksSlice';
+import { removeBook, getBooks } from 'redux/books/booksSlice';
 
 const Book = (props) => {
+  const { books, book } = props;
   const dispatch = useDispatch();
-  const { book } = props;
+  const handleRemoveBook = () => {
+    dispatch(removeBook(book));
+  };
   return (
     <>
       <li className="book">
         <div className="title-sec">
-          <p className="action">{book.category}</p>
-          <h3 className="title">{book.title}</h3>
-          <p className="author">{book.author}</p>
+          <p className="action">{books[book][0].category}</p>
+          <h3 className="title">{books[book][0].title}</h3>
+          <p className="author">{books[book][0].author}</p>
           <div>
             <button id="commentsbtn" className="button" type="button">comments</button>
-            <button onClick={dispatch(removeBook(book.item_id))} id="remove-btn" className="button" type="button">remove</button>
-            <button id="edit-btn" className="button" type="button">edit</button>
+            <button
+              onClick={handleRemoveBook}
+              id="remove-btn"
+              className="button"
+              type="button"
+            >
+              remove
+            </button>
+            <button onClick={() => dispatch(getBooks('random'))} id="edit-btn" className="button" type="button">edit</button>
           </div>
         </div>
         <div className="second-child">
           <div className="status">
             {/* PROGRESS BAR */}
-            <div className="ui-widgets">
-              <div className="ui-values" />
+            <div className="progress-wrapper">
+              <div className="parent">
+                <div className="child" />
+              </div>
+              <h3>80%</h3>
             </div>
             {/* END PROGRESS BAR */}
 
             <div className="percentage">
-              <h3>80%</h3>
               <p>completed</p>
             </div>
           </div>
@@ -44,7 +56,8 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  book: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  book: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  books: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default Book;

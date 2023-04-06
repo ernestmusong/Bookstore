@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addBook } from 'redux/books/booksSlice';
+import { createNewBook } from 'redux/books/booksSlice';
 
 function Form() {
   const dispatch = useDispatch();
@@ -13,10 +13,11 @@ function Form() {
       item_id: uuidv4(),
       title: formData.get('title'),
       author: formData.get('author'),
-      category: formData.get('category'),
+      category: '',
     };
-    dispatch(addBook(newBook));
+    dispatch(createNewBook(newBook));
   };
+
   return (
     <>
       <form onSubmit={handleSubmit}>

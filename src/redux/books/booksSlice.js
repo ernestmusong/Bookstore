@@ -1,45 +1,74 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const client = axios.create({
+  baseURL: 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi',
+});
+
+export const getBooks = createAsyncThunk(
+  'books/getBooks',
+  async (name, thunkAPI) => {
+    try {
+      const resp = await client.get('apps/JWCmt9iaJ4Qaad541Qcl/books');
+
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
+
+export const createNewBook = createAsyncThunk(
+  'books/createNewBook',
+  async (name, thunkAPI) => {
+    try {
+      const resp = await client.post('/apps/JWCmt9iaJ4Qaad541Qcl/books', name);
+      window.location.reload();
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
+export const removeBook = createAsyncThunk(
+  'books/removeBook',
+  async (bookId, thunkAPI) => {
+    try {
+      const resp = await client.delete(`/apps/JWCmt9iaJ4Qaad541Qcl/books/${bookId}`, bookId);
+      window.location.reload();
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('The book was deleted successfully!');
+    }
+  },
+);
 
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: {},
+  isLoading: true,
+  error: '',
 };
+
 export const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    addBook: (state, action) => {
-      state.books.push({
-        item_id: action.payload.item_id,
-        title: action.payload.title,
-        author: action.payload.author,
-        category: action.payload.category,
-      });
-    },
-    removeBook: (state, action) => {
-      state.books.filter((book) => book.item_id !== action.payload.item_id);
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getBooks.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(getBooks.fulfilled, (state, action) => ({
+        ...state,
+        isLoading: false,
+        books: action.payload,
+      }))
+      .addCase(getBooks.rejected, (state) => ({
+        ...state,
+        isLoading: false,
+        error: 'Something went wrong',
+      }));
   },
 });
-
-export const { addBook, removeBook } = booksSlice.actions;
 
 export default booksSlice.reducer;
