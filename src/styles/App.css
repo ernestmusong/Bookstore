@@ -201,25 +201,12 @@ main {
   gap: 1.313rem;
 }
 
-.parent {
+.progress-container {
   width: 4.25rem;
   height: 4.25rem;
   display: grid;
   place-items: center;
   position: relative;
-  border-radius: 9rem;
-  border: 5px solid var(--grey);
-  transform: rotate(190deg);
-}
-
-.child {
-  width: 4.25rem;
-  height: 4.25rem;
-  position: absolute;
-  border: 5px solid var(--medium-blue);
-  border-left-color: transparent;
-  border-radius: 9rem;
-  transform: rotate(190deg)
 }
 
 /* END PROGRESS BAR */
