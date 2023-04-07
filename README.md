@@ -45,7 +45,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](#)
+- [Live Demo Link](https://github.com/ernestmusong/Bookstore/pull/6)
 
 ## 🚀 Project Presentation <a name="live-demo"></a>
 
