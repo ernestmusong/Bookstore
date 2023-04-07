@@ -4,8 +4,12 @@ import { useDispatch } from 'react-redux';
 import { removeBook } from 'redux/books/booksSlice';
 
 const Book = (props) => {
-  const dispatch = useDispatch();
   const { book } = props;
+  const dispatch = useDispatch();
+  const handleRemoveBook = () => {
+    dispatch(removeBook(book.id));
+  };
+
   return (
     <>
       <li className="book">
@@ -15,20 +19,29 @@ const Book = (props) => {
           <p className="author">{book.author}</p>
           <div>
             <button id="commentsbtn" className="button" type="button">comments</button>
-            <button onClick={dispatch(removeBook(book.item_id))} id="remove-btn" className="button" type="button">remove</button>
+            <button
+              onClick={handleRemoveBook}
+              id="remove-btn"
+              className="button"
+              type="button"
+            >
+              remove
+            </button>
             <button id="edit-btn" className="button" type="button">edit</button>
           </div>
         </div>
         <div className="second-child">
           <div className="status">
             {/* PROGRESS BAR */}
-            <div className="ui-widgets">
-              <div className="ui-values" />
+            <div className="progress-wrapper">
+              <div className="parent">
+                <div className="child" />
+              </div>
+              <h3>80%</h3>
             </div>
             {/* END PROGRESS BAR */}
 
             <div className="percentage">
-              <h3>80%</h3>
               <p>completed</p>
             </div>
           </div>
