@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook, getBooks } from 'redux/books/booksSlice';
+import { removeBook } from 'redux/books/booksSlice';
 
 const Book = (props) => {
-  const { books, book } = props;
+  const { book } = props;
   const dispatch = useDispatch();
   const handleRemoveBook = () => {
-    dispatch(removeBook(book));
+    dispatch(removeBook(book.id));
   };
+
   return (
     <>
       <li className="book">
         <div className="title-sec">
-          <p className="action">{books[book][0].category}</p>
-          <h3 className="title">{books[book][0].title}</h3>
-          <p className="author">{books[book][0].author}</p>
+          <p className="action">{book.category}</p>
+          <h3 className="title">{book.title}</h3>
+          <p className="author">{book.author}</p>
           <div>
             <button id="commentsbtn" className="button" type="button">comments</button>
             <button
@@ -26,7 +27,7 @@ const Book = (props) => {
             >
               remove
             </button>
-            <button onClick={() => dispatch(getBooks('random'))} id="edit-btn" className="button" type="button">edit</button>
+            <button id="edit-btn" className="button" type="button">edit</button>
           </div>
         </div>
         <div className="second-child">
@@ -56,8 +57,7 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  book: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
-  books: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  book: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default Book;

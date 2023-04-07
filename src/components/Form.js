@@ -16,6 +16,7 @@ function Form() {
       category: '',
     };
     dispatch(createNewBook(newBook));
+    event.target.reset();
   };
 
   return (

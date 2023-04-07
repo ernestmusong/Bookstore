@@ -34,7 +34,6 @@ export const createNewBook = createAsyncThunk(
   async (name, thunkAPI) => {
     try {
       const resp = await client.post('/apps/JWCmt9iaJ4Qaad541Qcl/books', name);
-      window.location.reload();
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue('something went wrong');
@@ -46,7 +45,6 @@ export const removeBook = createAsyncThunk(
   async (bookId, thunkAPI) => {
     try {
       const resp = await client.delete(`/apps/JWCmt9iaJ4Qaad541Qcl/books/${bookId}`, bookId);
-      window.location.reload();
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue('The book was deleted successfully!');
@@ -55,7 +53,7 @@ export const removeBook = createAsyncThunk(
 );
 
 const initialState = {
-  books: {},
+  books: [],
   isLoading: true,
   error: '',
 };
@@ -72,12 +70,28 @@ export const booksSlice = createSlice({
       .addCase(getBooks.fulfilled, (state, action) => ({
         ...state,
         isLoading: false,
-        books: action.payload,
+        books: Object.entries(action.payload).map(([key, arr]) => arr.map((item) => {
+          const itemCopy = { ...item };
+          itemCopy.id = key;
+          return itemCopy;
+          // flatten the resulting array of arrays into a single array.
+        })).flat(),
       }))
+
       .addCase(getBooks.rejected, (state) => ({
         ...state,
         isLoading: false,
         error: 'Something went wrong',
+      }))
+      .addCase(removeBook.fulfilled, (state, action) => ({
+        ...state,
+        isLoading: false,
+        books: [...state.books.filter((book) => book.id !== action.meta.arg)],
+      }))
+      .addCase(createNewBook.fulfilled, (state, action) => ({
+        ...state,
+        isLoading: false,
+        books: [...state.books, action.meta.arg],
       }));
   },
 });
