@@ -37,13 +37,12 @@ const Book = (props) => {
               <div className="parent">
                 <div className="child" />
               </div>
-              <h3>80%</h3>
+              <div className="percentage">
+                <h3>80%</h3>
+                <p>completed</p>
+              </div>
             </div>
             {/* END PROGRESS BAR */}
-
-            <div className="percentage">
-              <p>completed</p>
-            </div>
           </div>
           <div className="chapter">
             <h3>current chapter</h3>
