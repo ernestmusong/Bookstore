@@ -45,7 +45,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](#)
+- [Live Demo Link](https://deploy-preview-6--musong-bookstore.netlify.app/)
 
 ## 🚀 Project Presentation <a name="live-demo"></a>
 

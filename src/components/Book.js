@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { removeBook } from 'redux/books/booksSlice';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Book = (props) => {
   const { book } = props;
@@ -34,16 +36,22 @@ const Book = (props) => {
           <div className="status">
             {/* PROGRESS BAR */}
             <div className="progress-wrapper">
-              <div className="parent">
-                <div className="child" />
+              <div className="progress-container">
+                <CircularProgressbar
+                  value={80}
+                  styles={buildStyles({
+                    pathTransitionDuration: 0.5,
+                    pathColor: 'linear-gradient(to bottom, #307bbe, #379cf6)',
+                    trailColor: '#e8e8e8',
+                  })}
+                />
               </div>
-              <h3>80%</h3>
+              <div className="percentage">
+                <h3>80%</h3>
+                <p>Completed</p>
+              </div>
             </div>
             {/* END PROGRESS BAR */}
-
-            <div className="percentage">
-              <p>completed</p>
-            </div>
           </div>
           <div className="chapter">
             <h3>current chapter</h3>
