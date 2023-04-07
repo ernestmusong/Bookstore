@@ -13,7 +13,7 @@ function Form() {
       item_id: uuidv4(),
       title: formData.get('title'),
       author: formData.get('author'),
-      category: '',
+      category: 'action',
     };
     dispatch(createNewBook(newBook));
     event.target.reset();
@@ -22,7 +22,7 @@ function Form() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h3>book title</h3>
+        <h3>Add new book</h3>
         <div className="inputs-wrap">
           <label id="title-label" htmlFor="title">
             <input
